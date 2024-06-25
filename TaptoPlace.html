@@ -73,14 +73,14 @@ async function activateXR() {
     "https://github.com/Oseiprince4567/artask/blob/main/headset.gltf",
     function (gltf) {
       headset = gltf.scene;
-  // Compute the bounding box of the garage
-        const boundingBox = new THREE.Box3().setFromObject(garage);
+  // Compute the bounding box of the headset
+        const boundingBox = new THREE.Box3().setFromObject(headset);
 
   // Compute the size of the bounding box
         const size = new THREE.Vector3();
         boundingBox.getSize(size);
 
-        console.log("Original Size of the garage:");
+        console.log("Original Size of the headset:");
         console.log("Width:", size.x);
         console.log("Height:", size.y);
         console.log("Depth:", size.z);
@@ -98,15 +98,15 @@ async function activateXR() {
   // Choose a uniform scale factor to maintain aspect ratio
         const scaleFactor = Math.min(scaleX, scaleY, scaleZ);
 
-  // Scale the garage uniformly
-        garage.scale.set(scaleFactor, scaleFactor, scaleFactor);
+  // Scale the headset uniformly
+        headset.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-  // Optionally, center the garage
+  // Optionally, center the headset
         const center = boundingBox.getCenter(new THREE.Vector3());
-        garage.position.sub(center.multiplyScalar(scaleFactor));
+        headset.position.sub(center.multiplyScalar(scaleFactor));
 
-        console.log("Scaled Size of the garage:");
-        const scaledBoundingBox = new THREE.Box3().setFromObject(garage);
+        console.log("Scaled Size of the headset:");
+        const scaledBoundingBox = new THREE.Box3().setFromObject(headset);
         const scaledSize = new THREE.Vector3();
         scaledBoundingBox.getSize(scaledSize);
         console.log("Width:", scaledSize.x);
